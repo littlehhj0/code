@@ -1,0 +1,9 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {"C_Cpp.errorSquiggles":"disabled"},
+    "extensions": {}
+}

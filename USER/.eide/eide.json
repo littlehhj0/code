@@ -1,0 +1,280 @@
+{
+  "name": "ELE",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    ".eide/deps"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "APP",
+        "files": [
+          {
+            "path": "../APP/Car/CarDriveCtrl.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "CORE",
+        "files": [
+          {
+            "path": "../CORE/startup_stm32f40_41xxx.s"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "FWLIB",
+        "files": [
+          {
+            "path": "../FWLIB/src/misc.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_adc.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_gpio.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_rcc.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_syscfg.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_tim.c"
+          },
+          {
+            "path": "../FWLIB/src/stm32f4xx_usart.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "HARDWARE",
+        "files": [
+          {
+            "path": "../HARDWARE/CCD/CCD.c"
+          },
+          {
+            "path": "../HARDWARE/LED/led.c"
+          },
+          {
+            "path": "../HARDWARE/Motor/Motor.c"
+          },
+          {
+            "path": "../HARDWARE/TIMER/timer.c"
+          },
+          {
+            "path": "../HARDWARE/WAVE/wave.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "README",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "SYSTEM",
+        "files": [
+          {
+            "path": "../SYSTEM/delay/delay.c"
+          },
+          {
+            "path": "../SYSTEM/sys/sys.c"
+          },
+          {
+            "path": "../SYSTEM/usart/usart.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "USER",
+        "files": [
+          {
+            "path": "main.c"
+          },
+          {
+            "path": "stm32f4xx_it.c"
+          },
+          {
+            "path": "system_stm32f4xx.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "f731795fe61c6e5d4265c0b5aa295629"
+  },
+  "targets": {
+    "ELE": {
+      "excludeList": [],
+      "toolchain": "AC5",
+      "compileConfig": {
+        "cpuType": "Cortex-M4",
+        "floatingPointHardware": "single",
+        "scatterFilePath": "",
+        "useCustomScatterFile": false,
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0x20000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x10000000",
+                "size": "0x10000"
+              },
+              "isChecked": false,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x8000000",
+                "size": "0x100000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "",
+        "cpuInfo": {
+          "vendor": "null",
+          "cpuName": "null"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../CORE",
+          "../SYSTEM/delay",
+          "../SYSTEM/sys",
+          "../SYSTEM/usart",
+          ".",
+          "../HARDWARE/LED",
+          "../HARDWARE/TIMER",
+          "../FWLIB/inc",
+          "../HARDWARE/Motor",
+          "../CONFIG",
+          "../APP/Car",
+          "../HARDWARE/CCD",
+          ".cmsis/include",
+          "RTE/_ELE",
+          "../HARDWARE/WAVE"
+        ],
+        "libList": [],
+        "sourceDirList": [],
+        "defineList": [
+          "STM32F40_41xxx",
+          "USE_STDPERIPH_DRIVER"
+        ]
+      }
+    }
+  },
+  "version": "3.3"
+}
