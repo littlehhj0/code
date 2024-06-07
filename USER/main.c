@@ -8,57 +8,56 @@
 #include "CCD.h"
 #include "wave.h"
 #include "stdio.h"
-float Velocity = 0, Angle = 0;
-static float Bias;
-int Sensor_Left, Sensor_Right;
-int Sensor, sum;
+float Velocity = -6, Angle = 0;
 extern int v_left, v_right;
-float distance = 0;
+float distance          = 0;
+int Identification_mark = 0; // è¯†åˆ«æ ‡å¿— 0ï¼šæœªè¯†åˆ« 1ï¼šè¯†ï¿½?
+int Identification_num  = 0; // è¯†åˆ«æ¬¡æ•°
 int main(void)
 {
     Car_Tag_Value a;
     Car_PWM_Value b;
-    // b.PWM_Left  = 1000;
-    // b.PWM_Right = -1000;
-    // b.PWM_Servo = 1;
 
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); // ÉèÖÃÏµÍ³ÖĞ¶ÏÓÅÏÈ¼¶·Ö×é2
-    delay_init(168);                                // ³õÊ¼»¯ÑÓÊ±º¯Êı
-    LED_Init();                                     // ³õÊ¼»¯LED¶Ë¿Ú
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); // è®¾ç½®ç³»ç»Ÿä¸­æ–­ä¼˜å…ˆçº§åˆ†ï¿½?2
+    delay_init(168);                                // åˆå§‹åŒ–å»¶æ—¶å‡½ï¿½?
+    LED_Init();                                     // åˆå§‹åŒ–LEDç«¯å£
     uart_init(115200);
     TIM5_Int_Init(50 - 1, 8400 - 1);
     Motor_PWM_Init(8400 - 1, 0);
     Servo_PWM_Init(9999, 336);
-    Encoder_Init_TIM2(); // ×óÂÖ±àÂë
-    Encoder_Init_TIM3(); // ÓÒÂÖ±àÂë
+    Encoder_Init_TIM2(); // å·¦è½®ç¼–ç 
+    Encoder_Init_TIM3(); // å³è½®ç¼–ç 
     CtrlIO_Init();
     Adc_Init();
     Drv_Hcsr04_Init();
+
     while (1) {
         distance = Med_Hcsr04_GetLength();
         // printf("distance = %f\r\n", distance);
-        // delay_ms(500);
-        // if (flag == 1) {
-        //     flag = 0;
-
-        //            Sensor_Left  = Get_Adc(15);
-        //            Sensor_Right = Get_Adc(13);
-        //            sum          = Sensor_Left + 100 * Sensor_Right;
-        //            Sensor       = sum / (Sensor_Left + Sensor_Right);
-        //            Bias         = Sensor - 50; // ÌáÈ¡Æ«²î
-        //            Angle        = 0.1f * Bias; //
-        //
-        Velocity = -(distance - 30) * 0.5;
-        // printf("Velocity = %f\r\n", Velocity);
-        a = Kinematic_Analysis(Velocity, Angle);
-        b = Get_PWM(v_left, v_right, a);
-        //printf("PWM_Left = %d, PWM_Right = %d, PWM_Servo = %d\r\n", b.PWM_Left, b.PWM_Right, b.PWM_Servo);
-        //b.PWM_Right = b.PWM_Left;
-//        b.PWM_Right = -4000;
-//        b.PWM_Left = -4000;
-        // b.PWM_Left *= 1.3;
-        Set_Pwm(b);
-        //}
-        // Set_Pwm(b);
+        if (distance < 20) {
+            Identification_num++;
+            if (Identification_num > 5) {
+                Identification_mark = 1;
+                Identification_num  = 0;
+                a                   = Kinematic_Analysis(10, 0); // åé€€
+                b                   = Get_PWM(v_left, v_right, a);
+                b.PWM_Left          = 1500;
+                b.PWM_Right         = 1500;
+                Set_Pwm(b);
+                delay_ms(3000);
+                a = Kinematic_Analysis(-10, -1); // è½¬å‘
+                b = Get_PWM(v_left, v_right, a);
+                Set_Pwm(b);
+                delay_ms(2000);
+            }
+        } else {
+            Identification_mark = 0;
+            Identification_num  = 0;
+        }
+        if (Identification_mark == 0) {
+            a = Kinematic_Analysis(Velocity, Angle);
+            b = Get_PWM(v_left, v_right, a);
+            Set_Pwm(b);
+        }
     }
 }

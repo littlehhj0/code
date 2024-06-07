@@ -12,8 +12,8 @@ float Velocity_KP = 12, Velocity_KI = 12;
 Car_Tag_Value Kinematic_Analysis(float velocity, float angle)
 {
     Car_Tag_Value PWM;
-    PWM.Tag_Left = velocity ;//* (1 + T * tan(angle) / 2 / L);
-    PWM.Tag_Right = velocity ;//* (1 - T * tan(angle) / 2 / L); // 后轮差速
+    PWM.Tag_Left = velocity * (1 + T * tan(angle) / 2 / L);
+    PWM.Tag_Right = velocity * (1 - T * tan(angle) / 2 / L); // 后轮差速
     PWM.PWM_Servo = SERVO_INIT_VALUE + angle * K;            // 舵机转向
     return PWM;
 }
@@ -68,10 +68,10 @@ Car_PWM_Value Get_PWM(int Encoder_left, int Encoder_right, Car_Tag_Value Tag_v)
         PWM.PWM_Right = -Amplitude;
     if (PWM.PWM_Right > Amplitude)
         PWM.PWM_Right = Amplitude;
-    if (PWM.PWM_Servo < (SERVO_INIT_VALUE - 200))
-        PWM.PWM_Servo = SERVO_INIT_VALUE - 200; // 舵机限幅
-    if (PWM.PWM_Servo > (SERVO_INIT_VALUE + 200))
-        PWM.PWM_Servo = SERVO_INIT_VALUE + 200; // 舵机限幅
+    if (PWM.PWM_Servo < (SERVO_INIT_VALUE - 100))
+        PWM.PWM_Servo = SERVO_INIT_VALUE - 100; // 舵机限幅
+    if (PWM.PWM_Servo > (SERVO_INIT_VALUE + 100))
+        PWM.PWM_Servo = SERVO_INIT_VALUE + 100; // 舵机限幅
     return PWM;
 }
 

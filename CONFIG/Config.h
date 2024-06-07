@@ -1,8 +1,8 @@
 //#include "sys.h"
 #include "Motor.h"
 #include <math.h>
-#define SERVO_INIT_VALUE   750  //¶æ»ú³õÊ¼»¯PWMÖµ
+#define SERVO_INIT_VALUE   750  //èˆµæœºåˆå§‹åŒ–PWMå€¼
 #define T 0.156f
-#define L 0.1445f        //°¢¿ËÂü×ª½ÇÏà¹Ø²ÎÊı
-#define K 311.4f         //¶æ»ú×ª½ÇÓ³ÉäÎªPWMÏµÊı
+#define L 0.1445f        //é˜¿å…‹æ›¼è½¬è§’ç›¸å…³å‚æ•°
+#define K 311.4f         //èˆµæœºè½¬è§’æ˜ å°„ä¸ºPWMç³»æ•°
 
